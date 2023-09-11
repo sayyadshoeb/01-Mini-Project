@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+	  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Add User</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       
+        <li class="nav-item">
+          <a class="nav-link" href="/users">View User</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Contact Us</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+   	<div class="container mt-5">
+		<h1>View Users</h1> 
+		
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phno</th>
+					<th>Gender</th>
+					<th>DOB</th>
+					<th>Edit</th>
+					<th>Delete</th>
+					<th>Action</th>
+					
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user: ${users}">
+					<td th:text="${user.userid}"></td>
+				    <td th:text="${user.fullname}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="${user.phno}"></td>
+					<td th:text="${user.gender}"></td>
+					<td th:text="${user.dob}"></td>
+					<td><a href="#" class="btn btn-primary">Edit</a></td>
+					<td><a href="#" class="btn btn-danger">Delete</a></td>
+					
+					<span th:switch="${user.activesw}">
+						
+                        <i th:case="y" class="fas fa-check red-text">
+                        <td><a href="#" class="btn btn-danger">De-Activate</a></td>
+                        </i>
+
+                        <i th:case="n" class="fas fa-times orange-text">
+                        <td><a href="#" class="btn btn-success">Activate</a></td>
+						</i>
+                    </span>
+
+
+
+				</tr>
+				
+			</tbody>
+			
+			
+		</table> 
+	</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
